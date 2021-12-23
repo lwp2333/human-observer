@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Container, Heading, Center, Text } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import TabsView from '../screens/TabsView';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +14,12 @@ const Splash = ({ navigation }) => {
         <Heading
           color="emerald.500"
           onPress={() => navigation.navigate('Home')}>
-          Splash
+          Home
+        </Heading>
+        <Heading
+          color="emerald.500"
+          onPress={() => navigation.navigate('TabsView')}>
+          TabsView
         </Heading>
       </Center>
     </SafeAreaView>
@@ -51,6 +57,7 @@ const Routes = () => {
           }}
         />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="TabsView" component={TabsView} />
       </Stack.Navigator>
     </NavigationContainer>
   );
