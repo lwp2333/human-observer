@@ -59,7 +59,7 @@ export default function TabsView() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}>
-      <Tab.Screen name="Tab_1" component={Tab_1} />
+      <Tab.Screen name="Tab_1" component={Tab_1} options={{ tabBarBadge: 3 }} />
       <Tab.Screen name="Tab_2" component={Tab_2} />
       <Tab.Screen name="Tab_3" component={Tab_3} />
     </Tab.Navigator>
