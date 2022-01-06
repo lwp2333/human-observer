@@ -1,6 +1,7 @@
 import React from 'react';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import linearGradient from 'react-native-linear-gradient';
 import Routes from './routes';
 
 export default function App() {
@@ -39,8 +40,14 @@ export default function App() {
       mono: 'Roboto',
     },
   });
+
+  const config = {
+    dependencies: {
+      'linear-gradient': linearGradient,
+    },
+  };
   return (
-    <NativeBaseProvider theme={theme}>
+    <NativeBaseProvider config={config} theme={theme}>
       <SafeAreaProvider>
         <Routes />
       </SafeAreaProvider>

@@ -6,28 +6,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import TabsView from 'screens/TabsView';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Button, View } from 'react-native';
+import Login from 'screens/Login';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
-
-const Splash = ({ navigation }) => {
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Center flex={1} px={3}>
-        <Heading
-          color="emerald.500"
-          onPress={() => navigation.navigate('DrawerView')}>
-          DrawerView
-        </Heading>
-        <Heading
-          color="emerald.500"
-          onPress={() => navigation.navigate('TabsView')}>
-          TabsView
-        </Heading>
-      </Center>
-    </SafeAreaView>
-  );
-};
 
 const HomeScreen = () => {
   return (
@@ -68,10 +50,10 @@ const DrawerView = () => {
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
-          name="Splash"
-          component={Splash}
+          name="Login"
+          component={Login}
           options={{
             headerShown: false,
           }}
