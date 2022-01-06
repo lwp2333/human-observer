@@ -1,111 +1,175 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
-  Center,
-  Input,
+  Text,
   Icon,
-  Stack,
   IconButton,
   HStack,
+  Stagger,
+  useDisclose,
+  Heading,
+  Center,
 } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Login = ({ navigation }) => {
-  const [showPass, setShowPass] = useState(false);
+  const { isOpen, onToggle } = useDisclose();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Box
+        flex={1}
+        p={4}
         bg={{
           linearGradient: {
             colors: ['lightBlue.300', 'violet.800'],
             start: [0, 0],
             end: [1, 0],
           },
-        }}
-        p="16"
-        _text={{
-          textAlign: 'center',
-          fontSize: '2xl',
-          fontWeight: 400,
-          color: 'white',
         }}>
-        React native Base
-      </Box>
-      <Center flex={0.6} px={3}>
-        <Stack space={4} w="100%" alignItems="center">
-          <Input
-            size="lg"
-            w={{
-              base: '75%',
-              md: '25%',
+        <Center flex={1}>
+          <Heading color="white" fontSize="3xl" fontWeight={500}>
+            React Native Base
+          </Heading>
+        </Center>
+
+        <Box justifyContent="center" alignItems="flex-end" minH={200}>
+          <Stagger
+            visible={isOpen}
+            initial={{
+              opacity: 0,
+              scale: 0,
+              translateY: 0,
             }}
-            variant="rounded"
-            InputLeftElement={
-              <Icon
-                as={<MaterialIcons name="person" />}
-                ml="2"
-                size={5}
-                color="muted.400"
-              />
-            }
-            placeholder="Name"
-          />
-          <Input
-            size="lg"
-            w={{
-              base: '75%',
-              md: '25%',
+            animate={{
+              translateY: 0,
+              scale: 1,
+              opacity: 1,
+              transition: {
+                type: 'spring',
+                mass: 0.8,
+                stagger: {
+                  offset: 30,
+                  reverse: true,
+                },
+              },
             }}
-            variant="rounded"
-            type={showPass ? 'text' : 'password'}
-            InputRightElement={
+            exit={{
+              translateY: 34,
+              scale: 0.5,
+              opacity: 0,
+              transition: {
+                duration: 100,
+                stagger: {
+                  offset: 30,
+                  reverse: true,
+                },
+              },
+            }}>
+            <IconButton
+              mb="2"
+              variant="solid"
+              bg="indigo.500"
+              colorScheme="indigo"
+              borderRadius="full"
+              onPress={() => navigation.navigate('DrawerView')}
+              icon={
+                <Icon
+                  as={MaterialIcons}
+                  size="6"
+                  name="location-pin"
+                  _dark={{
+                    color: 'warmGray.50',
+                  }}
+                  color="warmGray.50"
+                />
+              }
+            />
+            <IconButton
+              mb="2"
+              variant="solid"
+              bg="yellow.400"
+              colorScheme="yellow"
+              borderRadius="full"
+              onPress={() => navigation.navigate('TabsView')}
+              icon={
+                <Icon
+                  as={MaterialCommunityIcons}
+                  _dark={{
+                    color: 'warmGray.50',
+                  }}
+                  size="6"
+                  name="microphone"
+                  color="warmGray.50"
+                />
+              }
+            />
+            <IconButton
+              mb="2"
+              variant="solid"
+              bg="teal.400"
+              colorScheme="teal"
+              borderRadius="full"
+              icon={
+                <Icon
+                  as={MaterialCommunityIcons}
+                  _dark={{
+                    color: 'warmGray.50',
+                  }}
+                  size="6"
+                  name="video"
+                  color="warmGray.50"
+                />
+              }
+            />
+            <IconButton
+              mb="2"
+              variant="solid"
+              bg="red.500"
+              colorScheme="red"
+              borderRadius="full"
+              icon={
+                <Icon
+                  as={MaterialIcons}
+                  size="6"
+                  name="photo-library"
+                  _dark={{
+                    color: 'warmGray.50',
+                  }}
+                  color="warmGray.50"
+                />
+              }
+            />
+          </Stagger>
+        </Box>
+        <HStack justifyContent="flex-end">
+          <IconButton
+            variant="solid"
+            borderRadius="full"
+            onPress={onToggle}
+            bg="cyan.400"
+            icon={
               <Icon
-                onPress={() => {
-                  setShowPass(!showPass);
+                as={MaterialCommunityIcons}
+                size="6"
+                name="dots-horizontal"
+                color="warmGray.50"
+                _dark={{
+                  color: 'warmGray.50',
                 }}
-                as={
-                  <MaterialIcons
-                    name={showPass ? 'visibility' : 'visibility-off'}
-                  />
-                }
-                ml="2"
-                size={5}
-                color="muted.400"
               />
             }
-            placeholder="Password"
-          />
-        </Stack>
-      </Center>
-      <Center flex={0.2} px={4}>
-        <HStack space={8} alignItems="center">
-          <IconButton
-            colorScheme="indigo"
-            rounded={50}
-            variant="solid"
-            onPress={() => navigation.navigate('DrawerView')}
-            _icon={{
-              as: FontAwesome5,
-              name: 'arrow-left',
-              size: 'sm',
-            }}
-          />
-          <IconButton
-            colorScheme="indigo"
-            rounded={50}
-            variant="solid"
-            onPress={() => navigation.navigate('TabsView')}
-            _icon={{
-              as: FontAwesome5,
-              name: 'arrow-right',
-              size: 'sm',
-            }}
           />
         </HStack>
-      </Center>
+
+        <Center>
+          <Text color="white" fontSize="sm">
+            by lwp2333
+          </Text>
+        </Center>
+      </Box>
     </SafeAreaView>
   );
 };
