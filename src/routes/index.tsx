@@ -5,7 +5,7 @@ import { Container, Heading, Center, Text } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TabsView from 'screens/TabsView';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Button, View } from 'react-native';
+import { Button, StatusBar, View } from 'react-native';
 import Login from 'screens/Login';
 
 const Stack = createNativeStackNavigator();
@@ -14,6 +14,7 @@ const Drawer = createDrawerNavigator();
 const HomeScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar hidden={false} />
       <Center flex={1} px={3}>
         <Container>
           <Heading>
@@ -32,9 +33,12 @@ const HomeScreen = () => {
 
 const NotificationsScreen = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar hidden={false} />
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button onPress={() => navigation.goBack()} title="Go back home" />
+      </View>
+    </SafeAreaView>
   );
 };
 

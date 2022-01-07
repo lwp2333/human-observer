@@ -9,8 +9,8 @@ import {
   useDisclose,
   Heading,
   Center,
+  StatusBar,
 } from 'native-base';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -18,7 +18,8 @@ const Login = ({ navigation }) => {
   const { isOpen, onToggle } = useDisclose();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <>
+      <StatusBar hidden />
       <Box
         flex={1}
         p={4}
@@ -170,7 +171,7 @@ const Login = ({ navigation }) => {
           </Text>
         </Center>
       </Box>
-    </SafeAreaView>
+    </>
   );
 };
 
